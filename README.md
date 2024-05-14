@@ -34,7 +34,7 @@ Installing **latexmk** :
 sudo apt install latexmk
 ```
 
-# First compilation
+# Compilation
 - To simply generate a pdf, named `main.pdf` in your root folder :
 ```
 latexmk
@@ -48,7 +48,7 @@ latexmk -pv
 latexmk -pvc
 ```
 
-# Installation sur Windows
+# Installation on Windows
 
 2 solutions sont possibles. Dans le cadre d'un rapport de stage, l'installation en **local** est préférable, en raison des temps de compilation qui peuvent être très longs.
 
