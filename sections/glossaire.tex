@@ -1,0 +1,14 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+\begin{document}
+\chapitre{Glossaire}
+    \glsaddall
+    {\singlespacing
+    \section{Acronymes}
+    \printglossary[type=\acronymtype, nonumberlist]
+    \section{Termes techniques}
+    \setglossarystyle{altlist}
+    \printglossary[nonumberlist]
+    }
+
+\end{document}

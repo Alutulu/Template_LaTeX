@@ -1,0 +1,114 @@
+% ------------------- PACKAGES ET CONFIG ---------------------- %
+
+\documentclass[12pt]{report} % 11 ou 12pt
+\usepackage[french]{babel}
+\usepackage{fontspec}
+\usepackage{array}
+\usepackage{caption}
+\usepackage[a4paper, margin=2cm, includehead, includefoot, bottom=2.2cm, top=1.8cm]{geometry}
+\usepackage[export]{adjustbox}
+\setlength{\headheight}{57pt}
+\addtolength{\topmargin}{-20pt}
+\usepackage{setspace}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{sectsty}
+\usepackage[acronym]{glossaries}
+\usepackage{biblatex}
+\singlespacing % onehalfspacing ou singlespacing
+\setmainfont[Path=./fonts/,BoldFont=calibrib.ttf,BoldItalicFont=calibriz.ttf,ItalicFont=calibrii.ttf]{calibri.ttf}
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]{\color{BlueViolet}\bf\huge}{\thechapter}{2pc}{}
+\newcommand{\chapitre}[1]{{\color{BlueViolet}\chapter{#1} \label{ch:\thechapter}}}
+\titlespacing*{\chapter}{0 pt}{15 pt}{30 pt}
+
+% Couleurs des titres et sous-titres
+\sectionfont{\color{RoyalBlue}}
+\subsectionfont{\color{MidnightBlue}}
+\subsubsectionfont{\color{Black}}
+% ------------------------------------
+
+\renewcommand{\glossarysection}[2][]{}
+\renewcommand{\emph}{\textbf}
+\newcommand{\citer}[1]{\textsuperscript{\cite{#1}}}
+
+\newcommand{\figref}[1]{[Figure \textbf{#1}]}
+\newcommand{\tabref}[1]{[Table \textbf{#1}]}
+\usepackage[hidelinks]{hyperref}
+\usepackage{wrapfig}
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{sommaire}}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% ------------------- HEADERS ET FOOTERS ----------------------
+\newcommand{\setheader}[1]{\fancyhead{}
+\fancyhead[C]{#1}
+\fancyhead[L]{\includegraphics[width=0.12\textheight]{logos/logo_imt}}
+\fancyhead[R]{\includegraphics[width=0.17\textheight]{logos/logo_entreprise}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[C]{\thepage}}
+
+\setheader{Section n°\thechapter : \nameref{ch:\thechapter}}
+\fancypagestyle{plain}{\setheader{Section n°\thechapter : \nameref{ch:\thechapter}}}
+\fancypagestyle{sommaire}{\setheader{Sommaire}}
+\fancypagestyle{loflotstyle}{\setheader{Table des figures}}
+
+% ---------------------- TABLEAUX -----------------------------
+\newcolumntype{S}{>{\centering\arraybackslash} m{1.8cm} }
+\newcolumntype{R}{>{\raggedright\arraybackslash} m{3.6cm} }
+% -------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{pdfpages}
+
+\usepackage{subfiles} % Charger en dernier
+
+\addbibresource{data/biblio.bib}
+
+\makeglossaries
+
+
+\subfile{data/acronymes}
+\subfile{data/termes}
+
+\title{Mémoire sur les pokémons}
+\author{Arthur MATA}
+\date{Avril 2024}
+
+
+
+\begin{document}
+
+% ----------------------------CONTENU-----------------------------%
+
+\includepdf[pages=1]{couverture.pdf}
+\subfile{sections/remerciements}
+\newpage
+{\singlespacing
+  \tableofcontents
+}
+\thispagestyle{sommaire}
+{\singlespacing
+  \listoffigures
+  \begingroup
+  \let\cleardoublepage\relax
+  \let\clearpage\relax
+  \listoftables
+\endgroup
+}
+\thispagestyle{loflotstyle}
+\newpage
+\subfile{sections/resume}
+\subfile{sections/abstract}
+\subfile{sections/introduction}
+\subfile{sections/contexte}
+\subfile{sections/synthese}
+\subfile{sections/acquis}
+\subfile{sections/conclusion}
+\subfile{sections/glossaire}
+\subfile{sections/sources}
+\subfile{sections/annexes}
+
+% --------------------------------------------------------------- %
+
+\end{document}
